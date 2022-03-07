@@ -7,10 +7,6 @@ export interface UserInterface extends mongoose.Document {
     nickname: string;
     phone: number;
   };
-  billing_data: {
-    address: string;
-    zip_code: number;
-  };
 }
 
 const UserSchema = new Schema(
@@ -20,10 +16,6 @@ const UserSchema = new Schema(
       last_name: { type: String, required: true },
       nickname: { type: String, required: true },
       phone: { type: Number, required: true },
-    },
-    billing_data: {
-      address: { type: String, required: false, default: '' },
-      zip_code: { type: Number, required: false, default: 0 },
     },
     createdAt: { type: Number, inmutable: true },
   },

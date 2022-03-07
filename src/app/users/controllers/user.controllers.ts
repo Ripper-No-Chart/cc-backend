@@ -11,10 +11,9 @@ class UserController {
    */
   public async createUser(req: Request, res: Response): Promise<Response | void> {
     try {
-      const { primary_data, billing_data } = req.body;
+      const { primary_data } = req.body;
       const user: UserInterface = new UsersModel({
         primary_data,
-        billing_data,
       });
       await user.save(); // Save new user
       return res.status(CREATED).end();
@@ -31,9 +30,9 @@ class UserController {
    */
   public async editUser(req: Request, res: Response): Promise<Response> {
     try {
-      const { primary_data, billing_data } = req.body;
+      const { primary_data } = req.body;
       const _id = req._id;
-      await UsersModel.updateOne({ _id }, { $set: { primary_data, billing_data } });
+      await UsersModel.updateOne({ _id }, { $set: { primary_data } });
       return res.status(SUCCESS).json({ message: 'Usuario editado' });
     } catch (e) {
       return res.status(INTERNAL_ERROR).json({ error: (e as Error).message });
